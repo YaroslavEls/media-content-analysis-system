@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const seq = require('./connection.js');
 
-const Beat = seq.define('beat', {
+const Beat = seq.define('Beats', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -26,7 +26,7 @@ const Beat = seq.define('beat', {
     }
 });
 
-const BeatType = seq.define('beatType', {
+const BeatType = seq.define('BeatTypes', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -45,7 +45,7 @@ const BeatType = seq.define('beatType', {
     }
 });
 
-const Source = seq.define('source', {
+const Source = seq.define('Sources', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -61,7 +61,7 @@ const Source = seq.define('source', {
     }
 });
 
-const DataStream = seq.define('dataStream', {
+const DataStream = seq.define('DataStreams', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
