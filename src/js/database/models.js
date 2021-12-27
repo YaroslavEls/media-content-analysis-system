@@ -24,7 +24,7 @@ const Beat = seq.define('Beats', {
         type: Sequelize.INTEGER,
         allowNull: false
     }
-});
+}, {timestamps: false});
 
 const BeatType = seq.define('BeatTypes', {
     id: {
@@ -43,7 +43,7 @@ const BeatType = seq.define('BeatTypes', {
     repo: {
         type: Sequelize.STRING
     }
-});
+}, {timestamps: false});
 
 const Source = seq.define('Sources', {
     id: {
@@ -59,7 +59,7 @@ const Source = seq.define('Sources', {
     api_key: {
         type: Sequelize.STRING
     }
-});
+}, {timestamps: false});
 
 const DataStream = seq.define('DataStreams', {
     id: {
@@ -79,7 +79,7 @@ const DataStream = seq.define('DataStreams', {
     description: {
         type: Sequelize.STRING
     }
-});
+}, {timestamps: false});
 
 module.exports = {
     Beat,

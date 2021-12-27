@@ -17,7 +17,7 @@ server.use('/source', sourceRouter);
 
 (async () => {
     associate();
-    await seq.sync({ force: true });
+    await seq.sync();
 
     server.listen(3000, () => {
         console.log(`server is running on http://localhost:${process.env.PORT}/`);

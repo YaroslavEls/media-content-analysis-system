@@ -18,7 +18,7 @@ Router.route('/type/:id').get(getBeatsByType);
 Router.route('/source/:id').get(getBeatsBySource);
 Router.route('/stream/:id').get(getBeatsByStream);
 
-Router.patch('/:id').delete(updateBeat);
+Router.route('/:id').patch(updateBeat);
 Router.route('/:id').delete(deleteBeat);
 
 module.exports = Router;

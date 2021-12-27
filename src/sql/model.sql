@@ -9,7 +9,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 CREATE SCHEMA IF NOT EXISTS `mcas` ;
 USE `mcas` ;
 
-
 -- -----------------------------------------------------
 -- Table `mcas`.`Service`
 -- -----------------------------------------------------
@@ -28,11 +27,10 @@ CREATE TABLE IF NOT EXISTS `mcas`.`Service` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
--- Table `mcas`.`DataStream`
+-- Table `mcas`.`DataStreams`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mcas`.`DataStream` (
+CREATE TABLE IF NOT EXISTS `mcas`.`DataStreams` (
   `id` INT NOT NULL,
   `entryPoint` INT NULL,
   `name` VARCHAR(45) NULL,
@@ -49,54 +47,54 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mcas`.`Source`
+-- Table `mcas`.`Sources`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mcas`.`Source` (
+CREATE TABLE IF NOT EXISTS `mcas`.`Sources` (
   `id` INT NOT NULL,
   `uri` VARCHAR(255) NULL,
-  `api_key` INT NULL,
+  `api_key` VARCHAR(255) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mcas`.`BeatType`
+-- Table `mcas`.`BeatTypes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mcas`.`BeatType` (
+CREATE TABLE IF NOT EXISTS `mcas`.`BeatTypes` (
   `id` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
-  `description` VARCHAR(45) NULL,
-  `repo` VARCHAR(45) NULL,
+  `name` VARCHAR(255) NULL,
+  `description` VARCHAR(255) NULL,
+  `repo` VARCHAR(255) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mcas`.`Beat`
+-- Table `mcas`.`Beats`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mcas`.`Beat` (
+CREATE TABLE IF NOT EXISTS `mcas`.`Beats` (
   `id` INT NOT NULL,
   `uri` VARCHAR(255) NULL,
-  `Source_id` INT NOT NULL,
-  `BeatType_id` INT NOT NULL,
-  `DataStream_id` INT NOT NULL,
+  `source_id` INT NOT NULL,
+  `beatType_id` INT NOT NULL,
+  `dataStream_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Beat_Source1_idx` (`Source_id` ASC) VISIBLE,
-  INDEX `fk_Beat_BeatType1_idx` (`BeatType_id` ASC) VISIBLE,
-  INDEX `fk_Beat_DataStream1_idx` (`DataStream_id` ASC) VISIBLE,
+  INDEX `fk_Beat_Source1_idx` (`source_id` ASC) VISIBLE,
+  INDEX `fk_Beat_BeatType1_idx` (`beatType_id` ASC) VISIBLE,
+  INDEX `fk_Beat_DataStream1_idx` (`dataStream_id` ASC) VISIBLE,
   CONSTRAINT `fk_Beat_Source1`
-    FOREIGN KEY (`Source_id`)
-    REFERENCES `mcas`.`Source` (`id`)
+    FOREIGN KEY (`source_id`)
+    REFERENCES `mcas`.`Sources` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Beat_BeatType1`
-    FOREIGN KEY (`BeatType_id`)
-    REFERENCES `mcas`.`BeatType` (`id`)
+    FOREIGN KEY (`beatType_id`)
+    REFERENCES `mcas`.`BeatTypes` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Beat_DataStream1`
-    FOREIGN KEY (`DataStream_id`)
-    REFERENCES `mcas`.`DataStream` (`id`)
+    FOREIGN KEY (`dataStream_id`)
+    REFERENCES `mcas`.`DataStreams` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -127,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `mcas`.`Report` (
   INDEX `fk_Report_DataStream1_idx` (`DataStream_id` ASC) VISIBLE,
   CONSTRAINT `fk_Report_DataStream1`
     FOREIGN KEY (`DataStream_id`)
-    REFERENCES `mcas`.`DataStream` (`id`)
+    REFERENCES `mcas`.`DataStreams` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -138,11 +136,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mcas`.`Access` (
   `id` INT NOT NULL,
-  `role` VARCHAR(45) NOT NULL,
+  `role` VARCHAR(45) NULL,
   `Account_id` INT NOT NULL,
   `Report_id` INT NOT NULL,
   `Beat_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `role`),
+  PRIMARY KEY (`id`),
   INDEX `fk_Access_Account_idx` (`Account_id` ASC) VISIBLE,
   INDEX `fk_Access_Report1_idx` (`Report_id` ASC) VISIBLE,
   INDEX `fk_Access_Beat1_idx` (`Beat_id` ASC) VISIBLE,
@@ -158,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `mcas`.`Access` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Access_Beat1`
     FOREIGN KEY (`Beat_id`)
-    REFERENCES `mcas`.`Beat` (`id`)
+    REFERENCES `mcas`.`Beats` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

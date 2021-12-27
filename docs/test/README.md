@@ -1,4 +1,19 @@
 # Тестування працездатності системи
 
-*В цьому розділі необхідно вказати засоби тестування, навести вихідні коди тестів та результати тестування.*
-
+![alt text](../.vuepress/public/tests/1.png)
+![alt text](../.vuepress/public/tests/2.png)
+![alt text](../.vuepress/public/tests/3.png)
+![alt text](../.vuepress/public/tests/4.png)
+![alt text](../.vuepress/public/tests/5.png)
+![alt text](../.vuepress/public/tests/6.png)
+![alt text](../.vuepress/public/tests/7.png)
+![alt text](../.vuepress/public/tests/8.png)
+![alt text](../.vuepress/public/tests/9.png)
+![alt text](../.vuepress/public/tests/10.png)
+![alt text](../.vuepress/public/tests/11.png)
+![alt text](../.vuepress/public/tests/12.png)
+![alt text](../.vuepress/public/tests/13.png)
+![alt text](../.vuepress/public/tests/14.png)
+![alt text](../.vuepress/public/tests/15.png)
+![alt text](../.vuepress/public/tests/16.png)
+![alt text](../.vuepress/public/tests/17.png)
